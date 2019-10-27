@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+                        
+            <div class="row">
+                <div class="col-xs-12">       
+                    <hr>                     
+                    <pre>
+                        {{ $data }}
+                    </pre>
+                </div>
+            </div>        
+            <div class="row">
+                <div class="col-xs-12">       
+                    <hr>                     
+                    <p class="text-center mute">
+                        Rimorsoft Online - @italomoralesf
+                    </p>                    
+                </div>
+            </div>
+        </div>        
+    </div>
+    
+    <script src="lib/vue.js"></script>
+    <script src="lib/axios.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <script >
+     var app = new Vue({
+        el:'#app',
+        created: function(){
+             this.getAxios();
+             this.createProduct();
+        },
+        data:{
+            lists:[],
+            newProduct:{
+                name:'Camisas',
+                details:'Buena tela y mangas cortas',
+                _token:'',
+            },
+        },
+        methods: {
+           getAxios: function(){
+                let urlAxios = "http://chiringuito.test/api/products";
+                axios.get(urlAxios).then(response => {
+                    this.lists=response.data
+                });
+           },
+           createProduct: function(){
+                let urlAxios = "http://chiringuito.test/api/products";
+                axios.post(urlAxios,{
+                    name: "peine",
+                    details: "Muy buena la condenda"
+                }).then(response => {
+                    
+                }); 
+           },
+       }
+     });
+
+    </script>
+</body>
+</html>
